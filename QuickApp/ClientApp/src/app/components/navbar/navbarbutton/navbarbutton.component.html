@@ -1,0 +1,7 @@
+<!-- <li class="nav-item" routerLinkActive="active" *ngIf="display"> -->
+    <a class="btn btn-secondary" [routerLinkActiveOptions]="{ exact: true }" routerLinkActive="active" routerLink="{{path}}">{{text | translate}}
+
+        <i *ngIf="icon!==''" class="fa {{icon}}"></i>
+    </a>
+    <!-- <button type="button" routerLink="{{path}}" class="nav-link">{{text | translate}}</button> -->
+<!-- </li> -->

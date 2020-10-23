@@ -1,4 +1,4 @@
-<nav id="header" class="app-component navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+<nav id="header" class="app-component navbar navbar-expand-lg navbar-light bg-light  fixed-top">
     <div class="container">
         <a ngPreserveWhitespaces class="app-component navbar-brand" routerLink="/">
             <img src="assets/images/logo-white.png" class="d-inline-block align-top" alt="logo">
@@ -11,26 +11,24 @@
 
         <div *ngIf="isUserLoggedIn" class="app-component collapse navbar-collapse menuItemsContainer">
             <ul class="app-component nav nav-pills flex-column flex-lg-row mr-auto">
-                <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                <!-- <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
                     <a class="nav-link" routerLink=""><i class="fa fa-home"></i></a>
-                </li>
-                <li class="nav-item" routerLinkActive="active" *ngIf="canViewCustomers">
-                    <a class="nav-link" routerLink="/customers">{{'mainMenu.Customers' | translate}}</a>
-                </li>
-                <li class="nav-item" routerLinkActive="active" *ngIf="canViewProducts">
-                    <a class="nav-link" routerLink="/products">{{'mainMenu.Products' | translate}}</a>
-                </li>
-                <li class="nav-item" routerLinkActive="active" *ngIf="canViewOrders">
-                    <a class="nav-link" routerLink="/orders">{{'mainMenu.Orders' | translate}}</a>
-                </li>
-                <li class="nav-item" routerLinkActive="active">
-                    <a class="nav-link" routerLink="/about">{{'mainMenu.About' | translate}}</a>
-                </li>
+                </li> -->
+                <li app-navbarbutton class="nav-item"  [path]="''" [icon]="'fa-home'"></li>
+
+                <li app-navbarbutton class="nav-item"  *ngIf="canViewCustomers"
+                    [path]="'/customers'" [text]="'mainmenu.Customers'"></li>
+                <li app-navbarbutton class="nav-item"  *ngIf="canViewProducts"
+                    [path]="'/products'" [text]="'mainMenu.Products'"></li>
+                <li app-navbarbutton class="nav-item"  *ngIf="canViewOrders" [path]="'/orders'"
+                    [text]="'mainMenu.Orders'"></li>
+                <li app-navbarbutton class="nav-item"  [path]="'/about'"
+                    [text]="'mainMenu.About'"></li>
             </ul>
             <ul class="app-component nav nav-pills flex-column flex-lg-row mr-md-2">
-                <li class="nav-item" routerLinkActive="active">
-                    <a class="nav-link" routerLink="/settings"><i class="fa fa-cog"></i></a>
-                </li>
+                <li app-navbarbutton class="nav-item"  [path]="'/settings'" [icon]="'fa-cog'"></li>
+
+               
             </ul>
             <span class="app-component navbar-text notifications-popup">{{'app.Welcome' | translate}}</span>
             <a class="app-component nav-link user-name d-inline-block px-1" [popover]="popTemplate"
@@ -48,12 +46,13 @@
                 <app-logoutbutton>
 
                 </app-logoutbutton>
-                
+
             </ul>
         </div>
         <div *ngIf="!isUserLoggedIn && router.isActive('/about', false)"
             class="app-component collapse navbar-collapse menuItemsContainer">
             <ul class="app-component nav nav-pills flex-column flex-lg-row ml-auto">
+
                 <li class="nav-item" routerLinkActive="active">
                     <a class="nav-link" routerLink="/login"><i class="fa fa-sign-in"></i></a>
                 </li>
