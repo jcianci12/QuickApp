@@ -63,6 +63,7 @@ import { UsersManagementComponent } from './components/controls/users-management
 import { RolesManagementComponent } from './components/controls/roles-management.component';
 import { RoleEditorComponent } from './components/controls/role-editor.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { LogoutbuttonComponent } from './components/navbar/logoutbutton/logoutbutton.component';
 
 
 @NgModule({
@@ -110,7 +111,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     BootstrapTabDirective,
     BootstrapToggleDirective,
     GroupByPipe,
-    NavbarComponent
+    NavbarComponent,
+    LogoutbuttonComponent
   ],
   providers: [
     { provide: ErrorHandler, useClass: AppErrorHandler },

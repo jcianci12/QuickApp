@@ -45,10 +45,10 @@
             </ng-template>
             <span class="app-component navbar-text">, </span>
             <ul class="app-component nav nav-pills ml-lg-2 flex-column flex-lg-row">
-                <li class="nav-item" (click)="logout()">
-                    <a class="nav-link" href="javascript:;"><i class="fa fa-sign-out"></i>
-                        {{'mainMenu.Logout' | translate}}</a>
-                </li>
+                <app-logoutbutton>
+
+                </app-logoutbutton>
+                
             </ul>
         </div>
         <div *ngIf="!isUserLoggedIn && router.isActive('/about', false)"

@@ -230,10 +230,7 @@ newNotificationCount;
     }
   }
 
-  logout() {
-    this.authService.logout();
-    this.authService.redirectLogoutUser();
-  }
+  
 
   get userName(): string {
     return this.authService.currentUser ? this.authService.currentUser.userName : '';
