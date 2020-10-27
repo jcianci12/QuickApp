@@ -26,7 +26,7 @@ const alertify: any = require('../assets/scripts/alertify.js');
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
+export class AppComponent implements OnInit,  OnDestroy {
 
   isAppLoaded: boolean;
   isUserLoggedIn: boolean;
@@ -40,11 +40,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   dataLoadingConsecutiveFailures = 0;
   notificationsLoadingSubscription: any;
 
-  @ViewChildren('loginModal,loginControl')
-  modalLoginControls: QueryList<any>;
-
-  loginModal: ModalDirective;
-  loginControl: LoginComponent;
+ 
 
   gT = (key: string | Array<string>, interpolateParams?: object) => this.translationService.getTranslation(key, interpolateParams);
 
@@ -80,43 +76,10 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
 
-  ngAfterViewInit() {
-
-    this.modalLoginControls.changes.subscribe((controls: QueryList<any>) => {
-      controls.forEach(control => {
-        if (control) {
-          if (control instanceof LoginComponent) {
-            this.loginControl = control;
-            this.loginControl.modalClosedCallback = () => this.loginModal.hide();
-          } else {
-            this.loginModal = control;
-            this.loginModal.show();
-          }
-        }
-      });
-    });
-  }
+  
 
 
-  onLoginModalShown() {
-    this.alertService.showStickyMessage('Session Expired', 'Your Session has expired. Please log in again', MessageSeverity.info);
-  }
-
-
-  onLoginModalHidden() {
-    this.alertService.resetStickyMessage();
-    this.loginControl.reset();
-    this.shouldShowLoginModal = false;
-
-    if (this.authService.isSessionExpired) {
-      this.alertService.showStickyMessage('Session Expired', 'Your Session has expired. Please log in again to renew your session', MessageSeverity.warn);
-    }
-  }
-
-
-  onLoginModalHide() {
-    this.alertService.resetStickyMessage();
-  }
+  
 
 
   ngOnInit() {

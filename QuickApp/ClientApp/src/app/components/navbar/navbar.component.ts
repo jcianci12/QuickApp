@@ -1,11 +1,13 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { Router } from '@angular/router';
+import { ModalDirective } from 'ngx-bootstrap/modal';
 import { ToastaService, ToastData, ToastOptions } from 'ngx-toasta';
 import { Permission } from 'src/app/models/permission.model';
 import { AccountService } from 'src/app/services/account.service';
 import { AlertCommand, AlertDialog, AlertService, DialogType, MessageSeverity } from 'src/app/services/alert.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { NotificationService } from 'src/app/services/notification.service';
+import { LoginComponent } from '../login/loginmodal/login.component';
 const alertify: any = require('../../assets/scripts/alertify.js');
 
 
@@ -15,6 +17,12 @@ const alertify: any = require('../../assets/scripts/alertify.js');
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
+
+  @ViewChildren('loginModal,loginControl')
+  modalLoginControls: QueryList<any>;
+
+  loginModal: ModalDirective;
+  loginControl: LoginComponent;
 
 @Input() appTitle;
 @Input() isUserLoggedIn;
@@ -86,9 +94,48 @@ newNotificationCount;
 
   }
 
+  ngAfterViewInit() {
+
+    this.modalLoginControls.changes.subscribe((controls: QueryList<any>) => {
+      controls.forEach(control => {
+        if (control) {
+          if (control instanceof LoginComponent) {
+            this.loginControl = control;
+            this.loginControl.modalClosedCallback = () => this.loginModal.hide();
+          } else {
+            this.loginModal = control;
+            this.loginModal.show();
+          }
+        }
+      });
+    });
+  }
+
+
   ngOnDestroy() {
     this.unsubscribeNotifications();
   }
+
+  onLoginModalShown() {
+    this.alertService.showStickyMessage('Session Expired', 'Your Session has expired. Please log in again', MessageSeverity.info);
+  }
+
+
+  onLoginModalHidden() {
+    this.alertService.resetStickyMessage();
+    this.loginControl.reset();
+    this.shouldShowLoginModal = false;
+
+    if (this.authService.isSessionExpired) {
+      this.alertService.showStickyMessage('Session Expired', 'Your Session has expired. Please log in again to renew your session', MessageSeverity.warn);
+    }
+  }
+
+
+  onLoginModalHide() {
+    this.alertService.resetStickyMessage();
+  }
+
 
   markNotificationsAsRead() {
 

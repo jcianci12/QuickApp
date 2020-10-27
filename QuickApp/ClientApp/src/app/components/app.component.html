@@ -1,16 +1,16 @@
 <div class="app-component app-container">
   <ngx-toasta></ngx-toasta>
-<app-navbar 
-[appTitle]=appTitle
-[isUserLoggedIn]=isUserLoggedIn
->
 
-</app-navbar>
- 
+  <app-navbar [appTitle]=appTitle [isUserLoggedIn]=isUserLoggedIn>
 
-  
+  </app-navbar>
+
+
+
 
   <main class="app-component container">
+    <h1>{{shouldShowLoginModal|json}}</h1>
+
     <router-outlet></router-outlet>
     <div class="app-component footer-height"></div>
   </main>
@@ -24,15 +24,5 @@
       </p>
     </div>
   </footer>
-
-  <div *ngIf="shouldShowLoginModal" class="modal fade login-control" bsModal #loginModal="bs-modal" (onShown)="onLoginModalShown()" (onHidden)="onLoginModalHidden()" (onHide)="onLoginModalHide()"
-       [config]="{backdrop: 'static'}" tabindex="-1">
-    <div class="modal-dialog modal-lg h-75 d-flex flex-column justify-content-center my-0">
-      <div class="modal-content">
-        <div class="modal-body">
-          <app-login #loginControl isModal="true"></app-login>
-        </div>
-      </div>
-    </div>
-  </div>
+  
 </div>
