@@ -43,7 +43,6 @@ import { BootstrapToggleDirective } from './directives/bootstrap-toggle.directiv
 import { GroupByPipe } from './pipes/group-by.pipe';
 
 import { AppComponent } from './components/app.component';
-import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { CustomersComponent } from './components/customers/customers.component';
 import { ProductsComponent } from './components/products/products.component';
@@ -65,6 +64,7 @@ import { RoleEditorComponent } from './components/controls/role-editor.component
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { LogoutbuttonComponent } from './components/navbar/logoutbutton/logoutbutton.component';
 import { NavbarbuttonComponent } from './components/navbar/navbarbutton/navbarbutton.component';
+import { LoginComponent } from './components/login/loginmodal/login.component';
 
 
 @NgModule({

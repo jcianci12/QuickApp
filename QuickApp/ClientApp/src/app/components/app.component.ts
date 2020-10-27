@@ -16,7 +16,7 @@ import { AppTitleService } from '../services/app-title.service';
 import { AuthService } from '../services/auth.service';
 import { ConfigurationService } from '../services/configuration.service';
 import { Permission } from '../models/permission.model';
-import { LoginComponent } from '../components/login/login.component';
+import { LoginComponent } from './login/loginmodal/login.component';
 
 const alertify: any = require('../assets/scripts/alertify.js');
 
