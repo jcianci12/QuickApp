@@ -65,6 +65,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { LogoutbuttonComponent } from './components/navbar/logoutbutton/logoutbutton.component';
 import { NavbarbuttonComponent } from './components/navbar/navbarbutton/navbarbutton.component';
 import { LoginComponent } from './components/login/loginmodal/login.component';
+import { LogincomponentComponent } from './components/login/loginmodal/logincomponent/logincomponent.component';
 
 
 @NgModule({
@@ -114,7 +115,8 @@ import { LoginComponent } from './components/login/loginmodal/login.component';
     GroupByPipe,
     NavbarComponent,
     LogoutbuttonComponent,
-    NavbarbuttonComponent
+    NavbarbuttonComponent,
+    LogincomponentComponent
   ],
   providers: [
     { provide: ErrorHandler, useClass: AppErrorHandler },
